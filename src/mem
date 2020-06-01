@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# mem - get memory usage information
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+
+while IFS=: read -r set data
+do
+    data="${data%%kB}"
+
+    case "$set" in
+        MemTotal)
+            used=$((used+=data))
+            total=$((total=data))
+        ;;
+
+        Shmem)
+            used=$((used+=data))
+        ;;
+
+        MemFree|Buffers|Cached|SReclaimable)
+            used=$((used-=data))
+        ;;
+    esac
+done < /proc/meminfo
+
+used=$((used/=1024))
+total=$((total/=1024))
+
+printf '%sM / %sM\n' "$used" "$total"

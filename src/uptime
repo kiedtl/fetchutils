@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# uptime - get uptime on Linux hosts
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+
+seconds=$(cat /proc/uptime)
+seconds=${seconds%%.*}
+
+days=$((seconds/86400))
+hours=$((seconds/3600%24))
+minutes=$((seconds/60%60))
+
+[ $days    = 0 ] || uptime="${uptime}${days}d "
+[ $hours   = 0 ] || uptime="${uptime}${hours}h "
+[ $minutes = 0 ] || uptime="${uptime}${minutes}m"
+
+echo "${uptime}"
