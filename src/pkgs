@@ -24,7 +24,15 @@ shift
 
 while [ $# -gt 0 ]; do
     case "$1" in
-        xbps)
+        apt)
+            command="apt list --installed"
+        ;;
+
+        snap)
+            command="snap list"
+        ;;
+
+        xbps*)
             command="xbps-query -l"
         ;;
 
@@ -35,7 +43,7 @@ while [ $# -gt 0 ]; do
         ;;
     esac
 
-    pkgs="$($command | wc -l)"
+    pkgs="$($command | wc -l 2>/dev/null)"
     total="$((total+pkgs))"
     pkgs_total="$pkgs_total $pkgs ($1)"
     pkg_managers="$pkg_managers $1"
