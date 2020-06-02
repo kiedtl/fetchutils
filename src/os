@@ -4,5 +4,18 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-. /etc/os-release
-printf '%s\n' "$ID"
+[ -z "$1" ] && set -- '$pretty_name'
+
+while IFS='=' read -r key val
+do
+    val=${val%\"}
+    val=${val#\"}
+
+    case "$key" in
+        ID*) id="$val" ;;
+        PRETTY_NAME*) pretty_name="$val" ;;
+        NAME*) name="$val" ;;
+    esac
+done < /etc/os-release
+
+eval echo "$1"
