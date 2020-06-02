@@ -4,13 +4,52 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-command=
-[ -z "$1" ] && set -- "$(os)"
+# total amount of packages
+total=
 
-case "$1" in
-    void)
-        command="xbps-query -l"
-    ;;
-esac
+# total with package manager
+# e.g. "456 (xbps) 12 (snap) 1 (flatpack)"
+pkgs_total=
 
-$command | wc -l
+# total with package manager, tiny version
+# e.g. "469 (xbps, snap, flatpack)"
+pkgs_tiny_total=
+
+# a list of package managers used.
+# used to construct $pkgs_total at the end
+pkg_managers=
+
+fmt="${1:-\$total}"
+shift
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        xbps)
+            command="xbps-query -l"
+        ;;
+
+        *)
+            printf 'unrecognized distro: %s\n' "$1"
+            shift
+            continue
+        ;;
+    esac
+
+    pkgs="$($command | wc -l)"
+    total="$((total+pkgs))"
+    pkgs_total="$pkgs_total $pkgs ($1)"
+    pkg_managers="$pkg_managers $1"
+    shift
+done
+
+# generate $pkgs_tiny_total
+pkgs_tiny_total="$total ("
+set -- $pkg_managers
+while [ $# -gt 0 ]; do
+    pkgs_tiny_total="${pkgs_tiny_total}$1, "
+    shift
+done
+pkgs_tiny_total="${pkgs_tiny_total%,\ }"
+pkgs_tiny_total="${pkgs_tiny_total})"
+
+eval echo "$fmt"
