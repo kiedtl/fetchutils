@@ -1,12 +1,20 @@
 #!/bin/sh
 #
+# original version sto^H^H^Hborrowed from
 # http://github.com/mitchweaver/bin
 #
-# get screen dimensions
+# res: get screen dimensions
 #
+
+[ -z "$1" ] && set -- '${height}x$width'
 
 res=$(xrandr --nograb --current | awk '/\*/ {print $1}' | tail -n 1)
 res=${res% *}
-sw=${res%x*}
-sh=${res#*x}
-echo -n ${sw%.*} ${sh%.*}
+
+width=${res%x*}
+width=${width%.*}
+
+height=${res#*x}
+height=${height%.*}
+
+eval echo "$1"
