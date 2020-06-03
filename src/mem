@@ -4,6 +4,10 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
+# TODO:
+#    - precision control (use dc instead of builtin)
+#    - differenciate between GiB and GB, etc
+
 [ -z "$1" ] && set -- '${gb_used}G / ${gb_total}G'
 
 while IFS=: read -r set data; do
