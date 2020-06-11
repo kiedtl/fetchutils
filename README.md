@@ -1,6 +1,6 @@
 # fetchutils
 
-This is a collection of small (< ~200 LOC) POSIX shell scripts to retrieve
+This is a collection of small (< ~100 LOC) POSIX shell scripts to retrieve
 system information, such as uptime, memory, resolution, etc. They all
 output information in *plain text*, enabling them to be used for multiple
 purposes:
