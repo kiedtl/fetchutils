@@ -13,8 +13,27 @@
 ## docs
 - comments in scripts
 - man page for each script, with examples
-- readme.md
++ readme.md
 - install.md
+- Makefile
+
+## os support
+- OpenBSD support
++ FreeBSD support
++ Debian/Ubuntu support
+- Fedora/CentOS support
+- Arch support
+- Gentoo support
++ Void support
+- KISS support
+- CRUX support
+- Solus support
+- Slackware support
+- Bedrock support
+- OpenSUSE support
+- Alpine support
+- NixOS support
+- Flatpak support
 
 ## misc
 - adverti^H^H^H^H^H^H^Hshare on r/unixporn
