@@ -4,15 +4,19 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-seconds=$(cat /proc/uptime)
-seconds=${seconds%%.*}
+[ -z "$1" ] && set -- '${d} ${h} ${m}' 'd' 'h' 'm' 's'
+[ -f /proc/uptime ] || exit 1
 
-days=$((seconds/86400))
-hours=$((seconds/3600%24))
-minutes=$((seconds/60%60))
+s=$(cat /proc/uptime)
+s=${s%%.*}
 
-[ $days    = 0 ] || uptime="${uptime}${days}d "
-[ $hours   = 0 ] || uptime="${uptime}${hours}h "
-[ $minutes = 0 ] || uptime="${uptime}${minutes}m"
+d=$((s/86400))
+h=$((s/3600%24))
+m=$((s/60%60))
 
-echo "${uptime}"
+[ $d = 0 ] || d="${d}${2}"
+[ $h = 0 ] || h="${h}${3}"
+[ $m = 0 ] || m="${m}${4}"
+[ $s = 0 ] || s="${s}${5}"
+
+eval echo "$1"
