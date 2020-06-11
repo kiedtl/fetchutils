@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# simple - simple fetch script built on fetchutils
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+
+echo "
+    ___     ${USER}@$(hostname)
+   (.. |    os: $(../src/os)
+   (<> |    shell: ${SHELL}
+  / __  \   pkgs: $(../src/pkgs '$pkgs_total')
+ ( /  \ /|  uptime: $(../src/upt)
+_/\ __)/_)  memory: $(../src/mem)
+\/_____\/   kernel: $(uname -r)
+" 2>/dev/null
