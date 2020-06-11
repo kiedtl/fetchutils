@@ -5,12 +5,19 @@
 # get CPU temperature
 #
 
+[ -z "$1" ] && set -- '${c}°C'
+
+c=
+
 case $(uname) in
     OpenBSD)
-        temp=$(sysctl -n hw.sensors.cpu0.temp0)
-        printf '%s°C\n' "${temp%.*}"
-        ;;
+        c=$(sysctl -n hw.sensors.cpu0.temp0)
+        c="${c%.*}"
+    ;;
     Linux)
-        read -r tmp </sys/class/thermal/thermal_zone0/temp
-        printf '%s C\n' "${tmp%???}"
+        read -r c </sys/class/thermal/thermal_zone0/temp
+        c="${c%???}"
+    ;;
 esac
+
+eval echo "$1"
