@@ -5,10 +5,26 @@
 # See the COPYING file for copyright information.
 
 [ -z "$1" ] && set -- '${d} ${h} ${m}' 'd' 'h' 'm' 's'
-[ -f /proc/uptime ] || exit 1
 
-s=$(cat /proc/uptime)
-s=${s%%.*}
+case $(uname -s) in
+    Linux*)
+        s=$(cat /proc/uptime)
+        s=${s%%.*}
+    ;;
+
+    *BSD*)
+        boottime=$(sysctl -n kern.boottime | \
+            sed 's/{ sec = //g; s/,.*//g')
+        now=$(date +%s)
+
+        s=$((now - boottime))
+    ;;
+
+    *)
+        echo unsupported os: $(uname -s)
+        exit 1
+    ;;
+esac
 
 d=$((s/86400))
 h=$((s/3600%24))
