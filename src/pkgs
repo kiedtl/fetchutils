@@ -20,35 +20,25 @@ pkgs_tiny_total=
 pkg_managers=
 
 fmt="${1:-\$total}"
-shift
 
-while [ $# -gt 0 ]; do
-    case "$1" in
-        apt)
-            command="apt list --installed"
-        ;;
-
-        snap)
-            command="snap list"
-        ;;
-
-        xbps*)
-            command="xbps-query -l"
-        ;;
-
-        *)
-            printf 'unrecognized distro: %s\n' "$1"
-            shift
-            continue
-        ;;
-    esac
-
-    pkgs="$($command | wc -l 2>/dev/null)"
-    total="$((total+pkgs))"
-    pkgs_total="$pkgs_total $pkgs ($1)"
+getpkgs() {
+    total="$(($total+$2))"
+    pkgs_total="$pkgs_total $2 ($1)"
     pkg_managers="$pkg_managers $1"
-    shift
-done
+}
+
+command -v apt 2>/dev/null >&2 && \
+    getpkgs apt "$(apt list --installed | wc -l)"
+
+command -v snap 2>/dev/null >&2 && \
+    getpkgs snap "$(snap list | wc -l)"
+
+command -v pkg 2>/dev/null >&2 && \
+    getpkgs pkg \
+        "$(pkg stats | awk '/Installed packages:/ { print $3 }')"
+
+command -v xbps-query 2>/dev/null >&2 && \
+    getpkgs xbps "$(xbps-query -l | wc -l)"
 
 # generate $pkgs_tiny_total
 pkgs_tiny_total="$total ("
