@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# bigger - bigger demo for fetchutils
+# (c) Kiëd Llaentenn
+# refer to COPYING for license details
+
+# --- colors ---
+image=$(printf  "\033[0m")
+label=$(printf "\033[31m")
+reset=$(printf  "\033[0m")
+
+# --- display ---
+
+ascii="
+${image}┌──────────────────────┐
+${image}│                      │
+${image}│          ___         │
+${image}│         (.· |        │
+${image}│         (<> |        │
+${image}│        / __  \       │
+${image}│       ( /  \ /|      │
+${image}│      _/\ __)/_)      │
+${image}│      \/_____\/       │
+${image}│                      │
+${image}│                      │
+${image}└──────────────────────┘
+"
+
+echo "$ascii"
+
+print_info() {
+    [ -z "$2" ] && return
+
+    printf '%s%-8s%s%16s\n' "${label}" "$1" \
+        "${reset}" "$2"
+}
+
+print_info "USER"   "${USER}"
+print_info "OS"     "$(../src/os)"
+print_info "UPTIME" "$(../src/upt)"
+print_info "TEMP"   "$(../src/temp)"
+print_info "EDITOR" "neovim"
+print_info "SHELL"  "${SHELL##*/}"
+print_info "PKGS"   "$(../src/pkgs)"
+print_info "KERNEL" "$(uname -r)"
