@@ -7,33 +7,65 @@
 # TODO:
 #    - precision control (use dc instead of builtin)
 #    - differenciate between GiB and GB, etc
+#    - *b_free variables
 
-[ -z "$1" ] && set -- '${gb_used}G / ${gb_total}G'
+[ -z "$1" ] && set -- '${mb_used}M / ${mb_total}M'
 
-while IFS=: read -r set data; do
-    data="${data%%kB}"
+get_mem_linux() {
+    while IFS=: read -r set data; do
+        data="${data%%kB}"
 
-    case "$set" in
-        MemTotal)
-            kb_used=$((kb_used+=data))
-            kb_total=$((kb_total=data))
-        ;;
+        case "$set" in
+            MemTotal)
+                kb_used=$((kb_used+=data))
+                kb_total=$((kb_total=data))
+            ;;
 
-        Shmem)
-            kb_used=$((kb_used+=data))
-        ;;
+            Shmem)
+                kb_used=$((kb_used+=data))
+            ;;
 
-        MemFree|Buffers|Cached|SReclaimable)
-            kb_used=$((kb_used-=data))
-        ;;
-    esac
-done < /proc/meminfo
+            MemFree|Buffers|Cached|SReclaimable)
+                kb_used=$((kb_used-=data))
+            ;;
+        esac
+    done < /proc/meminfo
 
-b_used=$((kb_used*1024))
-b_total=$((kb_total*1024))
-mb_used=$((kb_used/1024))
-mb_total=$((kb_total/1024))
-gb_used=$((mb_used/1024))
-gb_total=$((mb_total/1024))
+    b_used=$((kb_used*1024))
+    b_total=$((kb_total*1024))
+    mb_used=$((kb_used/1024))
+    mb_total=$((kb_total/1024))
+    gb_used=$((mb_used/1024))
+    gb_total=$((mb_total/1024))
+}
+
+get_mem_freebsd() {
+    b_total=$(sysctl -n hw.physmem)
+
+    # thanks, neofetch! :P
+    pagesize="$(sysctl -n hw.pagesize)"
+    inactive="$(($(sysctl -n vm.stats.vm.v_inactive_count) * pagesize))"
+    unused="$(($(sysctl -n vm.stats.vm.v_free_count) * pagesize))"
+    cache="$(($(sysctl -n vm.stats.vm.v_cache_count) * pagesize))"
+    b_free="$((inactive + unused + cache))"
+    b_used=$((b_total - b_free))
+
+    kb_used=$((b_used/1024))
+    kb_total=$((b_total/1024))
+    mb_used=$((kb_used/1024))
+    mb_total=$((kb_total/1024))
+    gb_used=$((mb_used/1024))
+    gb_total=$((mb_total/1024))
+}
+
+case "$(uname -s)" in
+    Linux*) get_mem_linux ;;
+    FreeBSD*) get_mem_freebsd ;;
+
+    *)
+        echo "unsupported os: $(uname -s)";
+        exit 1
+    ;;
+esac
 
 eval echo "$1"
