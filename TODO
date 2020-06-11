@@ -5,35 +5,34 @@
 - `+`: done
 
 ## to write
-- host (machine type)
-- terminal (xterm, urxvt, etc)
-- cpu (clock, make, etc)
-- gpu (clock, make, etc)
+- (0.2.0) host (machine type)
+- (0.2.0) terminal (xterm, urxvt, etc)
+- (0.2.0) cpu (clock, make, etc)
+- (0.2.0) gpu (clock, make, etc)
 
 ## docs
-- comments in scripts
-- man page for each script, with examples
-+ readme.md
-- install.md
-- Makefile
+- (0.1.0) comments in scripts
+- (0.1.0) man page for each script, with examples
++ (0.1.0) readme.md
+- (0.1.0) Makefile
 
-## os support
-- OpenBSD support
-+ FreeBSD support
-+ Debian/Ubuntu support
-- Fedora/CentOS support
-- Arch support
-- Gentoo support
-+ Void support
-- KISS support
-- CRUX support
-- Solus support
-- Slackware support
-- Bedrock support
-- OpenSUSE support
-- Alpine support
-- NixOS support
-- Flatpak support
+## pkg manager support
++ (0.1.0) FreeBSD support
++ (0.1.0) Debian/Ubuntu support
+- (0.1.0) Arch support
++ (0.1.0) Void support
+- (0.1.0) KISS support
+- (0.2.0) Gentoo support
+- (0.2.0) CRUX support
+- (0.2.0) Slackware support
+- (0.2.0) Bedrock support
+- (0.2.0) Alpine support
+- (0.2.0) NixOS support
+- (0.3.0) Fedora/CentOS support
+- (0.3.0) Solus support
+- (0.3.0) OpenSUSE support
+- (0.3.0) Flatpak support
+- (0.3.0) OpenBSD support
 
 ## misc
-- adverti^H^H^H^H^H^H^Hshare on r/unixporn
+- (0.1.0) adverti^H^H^H^H^H^H^Hshare on r/unixporn
