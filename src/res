@@ -7,6 +7,10 @@
 #
 
 [ -z "$1" ] && set -- '${height}x$width'
+[ -z "$DISPLAY" ] && {
+    echo could not find display
+    exit 1
+}
 
 res=$(xrandr --nograb --current | awk '/\*/ {print $1}' | tail -n 1)
 res=${res% *}
