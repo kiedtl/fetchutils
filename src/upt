@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# uptime - get uptime on Linux hosts
+# upt - get uptime on hosts
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
