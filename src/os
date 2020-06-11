@@ -6,16 +6,37 @@
 
 [ -z "$1" ] && set -- '$pretty_name'
 
-while IFS='=' read -r key val
-do
-    val=${val%\"}
-    val=${val#\"}
+get_os_linux() {
+    while IFS='=' read -r key val
+    do
+        val=${val%\"}
+        val=${val#\"}
 
-    case "$key" in
-        ID*) id="$val" ;;
-        PRETTY_NAME*) pretty_name="$val" ;;
-        NAME*) name="$val" ;;
-    esac
-done < /etc/os-release
+        case "$key" in
+            ID*) id="$val" ;;
+            PRETTY_NAME*) pretty_name="$val" ;;
+            NAME*) name="$val" ;;
+        esac
+    done < /etc/os-release
+}
+
+get_os_bsd() {
+    # cache output of uname
+    uname=$(uname -s)
+
+    id=$(echo $uname | tr A-Z a-z)
+    pretty_name=$uname
+    name=$uname
+}
+
+case $(uname -s) in
+    *BSD*) get_os_bsd ;;
+    Linux*) get_os_linux ;;
+
+    *)
+        echo unsupported os: $(uname -s)
+        exit 1
+    ;;
+esac
 
 eval echo "$1"
