@@ -4,12 +4,7 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-# TODO: support for
-#   - wayland compositors
-#   - those few primitive x11 wms that 
-#     don't set _NET_WM_NAME
-
-[ -z "$DISPLAY" ] && exit
+[ -z "$DISPLAY" ] && exit 1
 
 wm="$(xprop -root -notype _NET_WM_NAME)"
 wm="${wm##*= \"}"
