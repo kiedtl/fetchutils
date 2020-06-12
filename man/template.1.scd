@@ -16,14 +16,17 @@ LONG DESCRIPTION
 
 [[ *name*
 :< description
-|  *FOO*
+|  FOO
 :  BAR
 
 # EXAMPLES
 
-COMMAND args
-	explanation++
-	sample result: xxx++
+The command
+
+	COMMAND args
+
+EXPLANATION++
+sample result: XXX
 
 # REPORTING BUGS
 
@@ -42,7 +45,7 @@ should not give you access to the complete manual.
 
 # LICENSE
 
-- Copyright © 2020 Kiëd Llaentenn
+Copyright © 2020 Kiëd Llaentenn
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
