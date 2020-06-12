@@ -11,12 +11,13 @@
 - (0.2.0) gpu (clock, make, etc)
 
 ## to fix
-- (0.2.0) ${dpi} format for res
-- (0.2.0) precision specifiers
-- (0.3.0) res should work on Wayland
-- (0.3.0) wm should work on Wayland
-- (0.2.0) wm should support wm's that don't set _NET_WM_NAME
-- (0.2.0) temp should support °F, °K
+- (0.2.0) res: ${dpi} format
+- (0.2.0) precision specifiers for all utilities
+- (0.3.0) res: support Wayland
+- (0.3.0) wm: support Wayland
+- (0.2.0) wm: support wm's that don't set _NET_WM_NAME
+- (0.2.0) temp: support °F, °K
+- (0.2.0) upt: addfmt specifiers for year, month, week
 
 ## docs
 - (0.1.0) comments in scripts
