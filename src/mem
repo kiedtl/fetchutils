@@ -5,9 +5,10 @@
 # See the COPYING file for copyright information.
 
 # TODO:
+#    - cleanup!
+#    - percentage_used variables
 #    - precision control (use dc instead of builtin)
 #    - differenciate between GiB and GB, etc
-#    - *b_free variables
 
 [ -z "$1" ] && set -- '${mb_used}M / ${mb_total}M'
 
@@ -37,6 +38,11 @@ get_mem_linux() {
     mb_total=$((kb_total/1024))
     gb_used=$((mb_used/1024))
     gb_total=$((mb_total/1024))
+
+    b_free=$((b_total-b_free))
+    kb_free=$((kb_total-kb_free))
+    mb_free=$((mb_total-mb_free))
+    gb_free=$((gb_total-gb_free))
 }
 
 get_mem_freebsd() {
@@ -47,15 +53,19 @@ get_mem_freebsd() {
     inactive="$(($(sysctl -n vm.stats.vm.v_inactive_count) * pagesize))"
     unused="$(($(sysctl -n vm.stats.vm.v_free_count) * pagesize))"
     cache="$(($(sysctl -n vm.stats.vm.v_cache_count) * pagesize))"
+
     b_free="$((inactive + unused + cache))"
     b_used=$((b_total - b_free))
-
     kb_used=$((b_used/1024))
     kb_total=$((b_total/1024))
     mb_used=$((kb_used/1024))
     mb_total=$((kb_total/1024))
     gb_used=$((mb_used/1024))
     gb_total=$((mb_total/1024))
+
+    kb_free=$((kb_total-kb_free))
+    mb_free=$((mb_total-mb_free))
+    gb_free=$((gb_total-gb_free))
 }
 
 case "$(uname -s)" in
