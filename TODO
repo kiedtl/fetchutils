@@ -10,6 +10,12 @@
 - (0.2.0) cpu (clock, make, etc)
 - (0.2.0) gpu (clock, make, etc)
 
+## to fix
+- (0.2.0) ${dpi} format for res
+- (0.2.0) precision specifiers
+- (0.3.0) res should work on Wayland
+- (0.2.0) temp should support °F, °K
+
 ## docs
 - (0.1.0) comments in scripts
 - (0.1.0) man page for each script, with examples
