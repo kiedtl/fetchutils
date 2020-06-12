@@ -4,7 +4,7 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-[ -z "$1" ] && set -- '$pretty_name'
+[ -z "$1" ] && set -- '$name'
 
 get_os_linux() {
     while IFS='=' read -r key val
@@ -20,7 +20,7 @@ get_os_linux() {
     done < /etc/os-release
 }
 
-get_os_bsd() {
+get_os_other() {
     # cache output of uname
     uname=$(uname -s)
 
@@ -30,13 +30,8 @@ get_os_bsd() {
 }
 
 case $(uname -s) in
-    *BSD*) get_os_bsd ;;
     Linux*) get_os_linux ;;
-
-    *)
-        echo unsupported os: $(uname -s)
-        exit 1
-    ;;
+    *) get_os_other ;;
 esac
 
 eval echo "$1"
