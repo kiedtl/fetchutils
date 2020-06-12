@@ -21,12 +21,19 @@ LONG DESCRIPTION
 
 # EXAMPLES
 
-The command
+Executing COMMAND with no format, like so:
 
-	COMMAND args
+	COMMAND
 
-EXPLANATION++
-sample result: XXX
+runs COMMAND with the default format, 'FORMAT'.++
+sample result: 'XXX'
+
+A custom format can be used, e.g.:
+
+	COMMAND 'FORMAT'
+
+sample result: 'XXX'
+
 
 # REPORTING BUGS
 
