@@ -16,53 +16,61 @@ mem retrieves the amount of memory used, the amount of free memory, and the tota
 
 [[ *name*
 :< description
-|  *${b_used}*
+|  ${b_used}
 :  bytes of used memory
-|  *${b_free}*
+|  ${b_free}
 :  bytes of free memory
-|  *${b_total}*
+|  ${b_total}
 :  bytes of total memory
-|  *${kb_used}*
+|  ${kb_used}
 :  KiB of used memory
-|  *${kb_free}*
+|  ${kb_free}
 :  KiB of free memory
-|  *${kb_total}*
+|  ${kb_total}
 :  KiB of total memory
-|  *${mb_used}*
+|  ${mb_used}
 :  MiB of used memory
-|  *${mb_free}*
+|  ${mb_free}
 :  MiB of free memory
-|  *${mb_total}*
+|  ${mb_total}
 :  MiB of total memory
-|  *${gb_used}*
+|  ${gb_used}
 :  GiB of used memory
-|  *${gb_free}*
+|  ${gb_free}
 :  GiB of free memory
-|  *${gb_total}*
+|  ${gb_total}
 :  GiB of total memory
 
 # EXAMPLES
 
-mem
-	run mem with the default format, '${mb_used}M / ${mb_total}M'.++
-	sample result: 2726M / 4053M++
+Executing mem with no arguments, like so:
 
-mem '${gb_used}G used out of ${gb_total}'
-	run mem with the format '<USED>G used out of <TOTAL>G'.++
-	sample result: 3G used out of 4G++
+	mem
+
+runs mem with the default format, '${mb_used}M / ${mb_total}M'.++
+sample result: 2726M / 4053M
+
+A custom format may be used, e.g.:
+
+	mem '${gb_used}G used out of ${gb_total}'
+
+This will run mem with the format '<USED>G used out of <TOTAL>G'.++
+sample result: 3G used out of 4G
+
+A more complex (and extremely messy) example:
 
 ```
-mem '${b_used} ${b_total}' \
-	| awk '{
-		p=($1*10)/$2
-		printf "[%0*s%*s]\n", p, "", 10 - p, ""
-	}' | \
-	sed 's/0/#/g'
+mem '${b_used} ${b_total}' | \
+        awk '{
+                p=($1*10)/$2
+                printf "[%0*s%*s]\n", p, "", 10 - p, ""
+        }' | \
+        sed 's/0/#/g'
 ```
-	a more complex (and extremely messy) example where the raw++
-	output of mem in bytes is piped to awk and used to create++
-	a bar showing the memory consumption.++
-	sample result: [#####    ]
+
+Here, the raw output of mem in bytes is piped to awk and used to create a
+bar showing the memory consumption.++
+sample result: [#######  ]
 
 # REPORTING BUGS
 
@@ -75,13 +83,13 @@ The full documentation for *mem* is not maintained as a Texinfo manual.
 If the *info* and *mem* programs are properly installed on your system,
 the command
 
-        *info mem*
+	*info mem*
 
 should not give you access to the complete manual.
 
 # LICENSE
 
-- Copyright © 2020 Kiëd Llaentenn
+Copyright © 2020 Kiëd Llaentenn
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
