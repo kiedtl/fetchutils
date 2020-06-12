@@ -12,6 +12,14 @@ COMMAND - SHORT DESCRIPTION
 
 LONG DESCRIPTION
 
+## FORMAT SPECIFIERS
+
+[[ *name*
+:< description
+|  *FOO*
+:  BAR
+
+
 # EXAMPLES
 
 COMMAND args
@@ -28,7 +36,7 @@ The full documentation for *COMMAND* is not maintained as a Texinfo manual.
 If the *info* and *COMMAND* programs are properly installed on your system,
 the command
 
-        *info COMMAND*
+	*info COMMAND*
 
 should not give you access to the complete manual.
 
