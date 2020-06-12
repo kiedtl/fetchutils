@@ -39,10 +39,10 @@ get_mem_linux() {
     gb_used=$((mb_used/1024))
     gb_total=$((mb_total/1024))
 
-    b_free=$((b_total-b_free))
-    kb_free=$((kb_total-kb_free))
-    mb_free=$((mb_total-mb_free))
-    gb_free=$((gb_total-gb_free))
+    b_free=$((b_total-b_used))
+    kb_free=$((kb_total-kb_used))
+    mb_free=$((mb_total-mb_used))
+    gb_free=$((gb_total-gb_used))
 }
 
 get_mem_freebsd() {
@@ -63,9 +63,9 @@ get_mem_freebsd() {
     gb_used=$((mb_used/1024))
     gb_total=$((mb_total/1024))
 
-    kb_free=$((kb_total-kb_free))
-    mb_free=$((mb_total-mb_free))
-    gb_free=$((gb_total-gb_free))
+    kb_free=$((b_free/1024))
+    mb_free=$((kb_free/1024))
+    gb_free=$((mb_free/1024))
 }
 
 case "$(uname -s)" in
