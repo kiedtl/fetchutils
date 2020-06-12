@@ -19,11 +19,11 @@ LONG DESCRIPTION
 |  *FOO*
 :  BAR
 
-
 # EXAMPLES
 
 COMMAND args
-	explanation
+	explanation++
+	sample result: xxx++
 
 # REPORTING BUGS
 
