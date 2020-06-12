@@ -4,7 +4,7 @@
 # (c) Kiëd Llaentenn <kiedtl@tilde.team>
 # See the COPYING file for copyright information.
 
-[ -z "$1" ] && set -- '${d} ${h} ${m}' 'd' 'h' 'm' 's'
+[ -z "$1" ] && set -- '${d} ${h} ${m}'
 
 case $(uname -s) in
     Linux*)
@@ -30,9 +30,9 @@ d=$((s/86400))
 h=$((s/3600%24))
 m=$((s/60%60))
 
-[ $d = 0 ] || d="${d}${2}"
-[ $h = 0 ] || h="${h}${3}"
-[ $m = 0 ] || m="${m}${4}"
-[ $s = 0 ] || s="${s}${5}"
+[ $d = 0 ] || d="${d}${UPT_DAY_SUFFIX:-d}"
+[ $h = 0 ] || h="${h}${UPT_HOUR_SUFFIX:-h}"
+[ $m = 0 ] || m="${m}${UPT_MIN_SUFFIX:-m}"
+[ $s = 0 ] || s="${s}${UPT_SEC_SUFFIX:-s}"
 
 eval echo "$1"
