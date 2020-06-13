@@ -20,10 +20,10 @@
 - (0.2.0) upt: addfmt specifiers for year, month, week
 
 ## docs
-- (0.1.0) comments in scripts
-- (0.1.0) man page for each script, with examples
++ (0.1.0) comments in scripts
++ (0.1.0) man page for each script, with examples
 + (0.1.0) readme.md
-- (0.1.0) Makefile
+* (0.1.0) Makefile
 
 ## pkg manager support
 + (0.1.0) FreeBSD support
