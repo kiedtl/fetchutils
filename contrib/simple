@@ -6,10 +6,10 @@
 
 echo "
     ___     ${USER}@$(hostname)
-   (.. |    os: $(../src/os)
+   (.. |    os: $(../src/os.sh)
    (<> |    shell: ${SHELL}
-  / __  \   pkgs: $(../src/pkgs '$pkgs_total')
- ( /  \ /|  uptime: $(../src/upt)
-_/\ __)/_)  memory: $(../src/mem)
+  / __  \   pkgs: $(../src/pkgs.sh '$pkgs_total')
+ ( /  \ /|  uptime: $(../src/upt.sh)
+_/\ __)/_)  memory: $(../src/mem.sh)
 \/_____\/   kernel: $(uname -r)
 " 2>/dev/null

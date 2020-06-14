@@ -36,10 +36,10 @@ print_info() {
 }
 
 print_info "USER"   "${USER}"
-print_info "OS"     "$(../src/os)"
-print_info "UPTIME" "$(../src/upt)"
-print_info "TEMP"   "$(../src/temp)"
+print_info "OS"     "$(../src/os.sh)"
+print_info "UPTIME" "$(../src/upt.sh)"
+print_info "TEMP"   "$(../src/temp.sh)"
 print_info "EDITOR" "neovim"
 print_info "SHELL"  "${SHELL##*/}"
-print_info "PKGS"   "$(../src/pkgs)"
+print_info "PKGS"   "$(../src/pkgs.sh)"
 print_info "KERNEL" "$(uname -r)"
