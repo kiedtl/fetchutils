@@ -27,8 +27,9 @@ getpkgs() {
     pkg_managers="$pkg_managers $1"
 }
 
-command -v apt 2>/dev/null >&2 && \
-    getpkgs apt "$(apt list --installed | wc -l)"
+command -v dpkg 2>/dev/null >&2 && \
+    getpkgs apt "$(dpkg --get-selections | \
+        grep -cv deinstall)"
 
 command -v kiss 2>/dev/null >&2 && \
     getpkgs kiss "$(kiss list | wc -l)"

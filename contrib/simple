@@ -7,7 +7,7 @@
 echo "
     ___     ${USER}@$(hostname)
    (.. |    os: $(../src/os.sh)
-   (<> |    shell: ${SHELL}
+   (<> |    shell: ${SHELL##*/}
   / __  \   pkgs: $(../src/pkgs.sh '$pkgs_total')
  ( /  \ /|  uptime: $(../src/upt.sh)
 _/\ __)/_)  memory: $(../src/mem.sh)

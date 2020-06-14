@@ -24,6 +24,9 @@ purposes:
 - replacing Neofetch, Screenfetch, ufetch, etc.
 - supporting every Linux distro under the sun.
 - supporting DragonflyBSD or NetBSD (not right now, anyway. sorry).
+- implementing a colorblocks script.
+	- such a script would require so much flexibility it's just better
+	that users write their own.
 
 ## installation
 
