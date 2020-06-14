@@ -30,6 +30,9 @@ getpkgs() {
 command -v apt 2>/dev/null >&2 && \
     getpkgs apt "$(apt list --installed | wc -l)"
 
+command -v kiss 2>/dev/null >&2 && \
+    getpkgs kiss "$(kiss list | wc -l)"
+
 command -v snap 2>/dev/null >&2 && \
     getpkgs snap "$(snap list | wc -l)"
 
