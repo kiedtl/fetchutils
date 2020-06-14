@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# simple-colored - simple, colored.
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+
+bold="$(printf '\033[1m')"
+reset="$(printf '\033[0m')"
+
+echo "
+${bold}    ___     ${USER}@$(hostname)
+${bold}   (.. |    os      ${reset}$(../src/os.sh)
+${bold}   (<> |    shell   ${reset}${SHELL##*/}
+${bold}  / __  \   pkgs    ${reset}$(../src/pkgs.sh '$pkgs_total')
+${bold} ( /  \ /|  uptime  ${reset}$(../src/upt.sh)
+${bold}_/\ __)/_)  memory  ${reset}$(../src/mem.sh)
+${bold}\/_____\/   kernel  ${reset}$(uname -r)
+" 2>/dev/null
