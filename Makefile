@@ -1,15 +1,39 @@
-.PHONY:    all clean
+.POSIX:
+.PHONY: all clean
 
+DESTDIR =
+PREFIX  = /usr/local
+
+CMD = @
 SRC = mem.sh os.sh pkgs.sh res.sh \
       temp.sh upt.sh wm.sh
-BIN = $(SRC:.sh=)
 SCD = $(patsubst %.sh,man/%.1.scd,$(SRC))
 MAN = $(patsubst %.1,%.1,$(SCD:.scd=))
 
 all: $(MAN)
 
 %.1: %.1.scd
-	scdoc < $< > $(<:.scd=)
-
+	@printf "    %-8s %s\n" "SCDOC" "$@"
+	$(CMD)scdoc < $< > $(<:.scd=)
 clean:
-	rm -f $(MAN)
+	@printf "    %-8s man/*.1\n" "CLEAN"
+	$(CMD)rm -f man/*.1
+
+install:
+	$(CMD)cat etc/manifest.txt | \
+		while read -r src dest mode; \
+		do \
+			printf "    %-8s %s\n" "INSTALL" \
+				$(DESTDIR)$(PREFIX)$$dest; \
+			install -Dm$$mode $$src \
+				$(DESTDIR)$(PREFIX)$$dest; \
+		done
+
+uninstall:
+	$(CMD)cat etc/manifest.txt | \
+		while read -r _ dest _; \
+		do \
+			printf "    %-8s %s\n" "CLEAN" \
+				$(DESTDIR)$(PREFIX)$$dest; \
+			rm -f $(DESTDIR)$(PREFIX)$$dest; \
+		done
