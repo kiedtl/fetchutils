@@ -33,6 +33,9 @@ command -v apt 2>/dev/null >&2 && \
 command -v snap 2>/dev/null >&2 && \
     getpkgs snap "$(snap list | wc -l)"
 
+command -v pacman 2>/dev/null &2 && \
+    getpkgs pacman "$(pacman -Qq | wc -l)"
+
 command -v pkg 2>/dev/null >&2 && \
     getpkgs pkg \
         "$(pkg stats | awk '/Installed packages:/ { print $3 }')"
