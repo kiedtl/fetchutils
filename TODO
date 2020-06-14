@@ -18,7 +18,8 @@
 - (0.2.0) wm: support wm's that don't set _NET_WM_NAME
 - (0.2.0) temp: support °F, °K
 - (0.2.0) upt: addfmt specifiers for year, month, week
-- (0.1.0) temp: throw error if cpu temp file not found
++ (0.1.0) temp: throw error if cpu temp file not found
+- (0.1.0) temp: support freebsd
 
 ## docs
 + (0.1.0) comments in scripts
