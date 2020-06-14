@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# cetch - simple fetch script
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright.
+#
+# (partly) inspired by:
+#     u/__trvv
+#     https://github.com/trvv/cetch
+#
+# ascii art by:
+#     u/__trvv
+#
+
+uptime=$(../src/upt.sh '${d} ${h}')
+pkgs=$(../src/pkgs.sh)
+os=$(../src/os.sh)
+colorblk1=$(printf '\e[0m\e[41m  \e[42m  \e[43m  \e[44m  \e[0m')
+colorblk2=$(printf '\e[0m\e[45m  \e[46m  \e[47m  \e[48m  \e[0m')
+
+reset=$(printf '\e[0m')
+color1=$(printf '\e[31m')
+
+format_info() {
+    printf '%s%-8s %s%8s' "$color1" "$1" "$reset" "$2"
+}
+
+echo "
+${color1}    .---.
+${color1}   /     \    ${USER}${reset}@${color1}$(hostname)
+${color1}   \\.@-@./    $(format_info uptime "$uptime")
+${color1}   /\`\\-/\`\\    $(format_info pkgs "$pkgs")
+${color1}  //  -  \\\\   $(format_info os "$os")
+${color1} | \\     )|_  $(format_info shell "${SHELL##*/}")
+${color1}/\`\\-\`>  <-/ \\ ${color1}colors   $colorblk1
+${color1}\\__/'---'\\__/          $colorblk1
+"
