@@ -10,15 +10,20 @@
 c=
 
 case $(uname -s) in
-    FreeBSD*)
-        # TODO: freebsd
-    ;;
     OpenBSD*)
         c=$(sysctl -n hw.sensors.cpu0.temp0)
         c="${c%.*}"
     ;;
     Linux*)
-        read -r c </sys/class/thermal/thermal_zone0/temp
+        path=/sys/class/thermal/thermal_zone0/temp
+        if [ -f $path ]
+        then
+            read -r c < $path
+        else
+            echo could not get temperature
+            exit 1
+        fi
+
         c="${c%???}"
     ;;
     *)
