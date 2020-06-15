@@ -21,16 +21,16 @@
 - (0.2.0) precision specifiers for all utilities
 - (0.2.0) wm: support wm's that don't set _NET_WM_NAME
 - (0.2.0) temp: support °F, °K
+- (0.2.0) temp: support freebsd
 - (0.2.0) upt: addfmt specifiers for year, month, week
 + (0.1.0) temp: throw error if cpu temp file not found
-- (0.1.0) temp: support freebsd
 
 ## docs
 + (0.1.0) comments in scripts
 + (0.1.0) man page for each script, with examples
 + (0.1.0) readme.md
 + (0.1.0) Makefile
-- (0.1.0) write fetchutils(1)
++ (0.1.0) write fetchutils(1)
 
 ## pkg manager support
 + (0.1.0) FreeBSD support
@@ -51,5 +51,9 @@
 - (0.3.0) OpenBSD support
 
 ## misc
+- update README.md
+- spellcheck manpages and README.md
+- add INSTALL.md
+- add new script
 - (0.1.0) one final round of testing before release of v0.1.0
 - (0.1.0) adverti^H^H^H^H^H^H^Hshare on r/unixporn
