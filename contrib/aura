@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# aura - an imitation of aurafetch
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright.
+
+echo
+
+# TODO: use fetchutils to get kernel
+kernel=$(uname -r)
+kernel=${kernel%-*}
+
+blocks=$(printf '\e[0m\e[31m ▲\e[32m ▼\e[33m ▲\e[34m ▼\e[35m ▲\e[36m ▼\e[37m ▲\e[0m')
+
+reset=$(printf '\e[0m')
+color1=$(printf '\e[1;31m')
+
+format_info() {
+    printf '%s%-10s %s%10s\n' "$color1" "$1:" \
+        "$reset" "$2"
+}
+
+format_info user   "${USER}"
+format_info os     "$(../src/os.sh '$id')"
+format_info kern   "${kernel}"
+format_info ed     "${EDITOR:-$VISUAL}"
+format_info sh     "${SHELL##*/}"
+format_info pkgs   "$(../src/pkgs.sh)"
+
+# TODO: use fetchutils for temrminal
+format_info term   "${TERM%%-*}"
+
+echo
+echo "   $blocks"
+
+echo
