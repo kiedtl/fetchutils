@@ -7,8 +7,9 @@ PREFIX  = /usr/local
 CMD = @
 SRC = disk.sh mem.sh os.sh pkgs.sh res.sh \
       temp.sh upt.sh wm.sh
-SCD = $(patsubst %.sh,man/%.1.scd,$(SRC))
-MAN = $(patsubst %.1,%.1,$(SCD:.scd=))
+SCD = man/fetchutils.1.scd \
+      $(patsubst %.sh,man/%.1.scd,$(SRC))
+MAN = $(SCD:.scd=)
 
 all: $(MAN)
 
