@@ -1,0 +1,88 @@
+#!/bin/bash
+#
+# cmfetch - cleaned up version of mfetch that uses
+#    fetchutils to fetch information
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+#
+# Credits:
+#     This is actually just a cleaned up version
+#     of https://gitlab.com/rpolve/mfetch
+
+echo
+
+# TODO: uptime: write info in years, weeks too
+LINE[0]=$(../src/upt.sh)
+
+LINE[1]=$(../src/mem.sh '${gb_used}G / ${gb_total}G')
+
+# TODO: use fetchutils for getting disk info
+LINE[2]=$(df -h | awk '/\/$/ {print $3 " / " $2}')
+LINE[3]=$(df -h | awk '/\/home$/ {print $3 " / " $2}')
+
+HOST="$(hostname)"
+HOSTLEN=${#HOST}
+
+if [ "$HOSTLEN" -gt 15 ]
+then
+    HOST="$(printf "%.15s" "$HOST")"
+    HOSTLEN=${#HOST}
+fi
+
+NAME=("Uptime" "Memory" "Root" "Home")
+
+while [ "$HOSTLEN" -gt 7 ]; do
+	HOSTLEN=$(( HOSTLEN - 7 ))
+done
+
+F="\033[0;$(( HOSTLEN + 30 ))m"
+A=("\033[1;36m" "\033[0;37m")
+B=("\033[1;40;32m" "\033[0;40;37m")
+R="\033[0m"
+
+[ -n "$1" ] && case "$1" in
+	"plain")
+		F="$R";;
+	"border")
+		A='' B='';;
+	"mono")
+		A='' B='' F="$R";;
+	"mono2")
+        A=''
+        B=''
+        F=''
+        R=''
+esac
+
+for ((i = 0; i < ${#LINE[@]}; i++)); do
+	[ ${#LINE[$i]} -ge "${MAX:-0}" ] && \
+        MAX=${#LINE[$i]}
+done
+
+BASELEN=$(( 12 + MAX ))
+
+printf "${F}%s%${BASELEN}s%s${R}\n" " ╔" \
+    "[${HOST}]" "╗" | \
+        sed 's/ /═/g; s/═/ /'
+
+for ((i = 0; i < ${#LINE[@]}; i++)); do
+	if [ -n "${LINE[$i]}" ]; then
+		C=(${A[@]}) A=(${B[@]}) B=(${C[@]})
+		printf " ${F}%s${C[0]} %-6s" \
+            "║" "${NAME[$i]}"
+		printf "${C[1]}%$(( BASELEN - 8 ))s ${F}%s${R}\n" \
+            "${LINE[$i]}" "║"
+	fi
+done
+
+printf "${F}%s%${BASELEN}s%s${R}\n\n" " ╚" \
+    " " "╝" | sed 's/ /═/g; s/═/ /'
+
+command -v tmux >/dev/null && \
+    tmux ls 2>/dev/null | \
+        grep -cv "attached" | awk '{
+            if ($0 == 1)
+                print "There is 1 detached tmux session."
+            else if ($0 > 1)
+                print "There are " $0 " detached tmux sessions."
+        }'
