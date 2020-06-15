@@ -7,34 +7,35 @@
 
 SHCHK_FLAGS="-e2016 -e2034"
 
-# run shellcheck
-header "testing for shellcheck"
+header "testing for needed programs"
+test_command "command -v scdoc 2>/dev/null >&2" \
+    "scdoc installed"
 test_command "command -v shellcheck 2>/dev/null >&2" \
-    "Shellcheck installed"
+    "shellcheck installed"
 
 header "linting source files"
 for file in src/*
 do
     test_command "shellcheck $SHCHK_FLAGS $file" \
-        "Passed shellcheck: '$file'"
+        "passed shellcheck: '$file'"
 done
 
 header "linting example scripts"
 for file in contrib/*
 do
     test_command "shellcheck $SHCHK_FLAGS $file" \
-        "Passed shellcheck: '$file'"
+        "passed shellcheck: '$file'"
 done
 
 header "linting tests files"
 test_command "shellcheck $SHCHK_FLAGS tests/main.sh tests/lib.sh" \
-    "Passed shellcheck: tests/main.sh tests/lib.sh"
+    "passed shellcheck: tests/main.sh tests/lib.sh"
 
 header "checking manpages compile with scdoc"
 for file in man/*.1.scd
 do
     test_command "cat $file | scdoc" \
-        "Compiles with scdoc: '$file'"
+        "passed scdoc: '$file'"
 done
 
 end
