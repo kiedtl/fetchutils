@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# nice - nice fetch script built on fetchutils
+# (c) Kiëd Llaentenn <kiedtl@tilde.team>
+# See the COPYING file for copyright information.
+
+echo
+
+# color escapes
+BLK="$(printf "\033[30m")"
+RED="$(printf "\033[31m")"
+GRN="$(printf "\033[32m")"
+YLW="$(printf "\033[33m")"
+BLU="$(printf "\033[34m")"
+PUR="$(printf "\033[35m")"
+CYN="$(printf "\033[36m")"
+WHT="$(printf "\033[37m")"
+RST="$(printf "\033[0m")"
+
+# build the color bars
+BAR="━━━━━"
+LEN=6
+OUTT="$RED$BAR$GRN$BAR$YLW$BAR$BLU$BAR$PUR$BAR$CYN$BAR$RST"
+
+format_info() {
+    printf '%s%-8s %s%21s\n' "$BLU" "$1" \
+        "$RST" "$2"
+}
+
+# TODO: display full name of editor (e.g. nvim => neovim)
+# TODO: display full name of shell  (e.g. zsh  => Z Shell)
+
+echo "${OUTT}"
+format_info os       "$(../src/os.sh '$pretty_name')"
+format_info editor   "$EDITOR"
+format_info packages "$(../src/pkgs.sh '$pkgs_tiny_total')"
+format_info shell    "${SHELL##*/}"
+format_info uptime   "$(../src/upt.sh)"
+echo "${OUTT}"
+
+echo
