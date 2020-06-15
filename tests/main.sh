@@ -30,4 +30,11 @@ header "linting tests files"
 test_command "shellcheck $SHCHK_FLAGS tests/main.sh tests/lib.sh" \
     "Passed shellcheck: tests/main.sh tests/lib.sh"
 
+header "checking manpages compile with scdoc"
+for file in man/*.1.scd
+do
+    test_command "cat $file | scdoc" \
+        "Compiles with scdoc: '$file'"
+done
+
 end

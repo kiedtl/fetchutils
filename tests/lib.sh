@@ -12,7 +12,8 @@ header() {
 
 # usage: test_command <command> <test name>
 test_command() {
-    if $1 2>/dev/null >&2
+    # shellcheck disable=2086
+    if eval $1 >/dev/null
     then
         printf '✔ | %s\n' "$2"
         PASSED=$((PASSED+1))
