@@ -67,7 +67,7 @@ sample result: '/dev/sda2 (/): 150GiB / 983GiB (15%)'
 Note how the pattern must be specified if a custom format is used.
 
 Also note that parenthesis must be escaped in the format string; this
-is mainly due to the format string being an actuall sh expression that
+is mainly due to the format string being an actual sh expression that
 is evaluated to expand it. See fetchutils(1) for more info.
 
 # REPORTING BUGS
