@@ -27,12 +27,11 @@ format_info() {
         "$RST" "$2"
 }
 
-# TODO: display full name of editor (e.g. nvim => neovim)
 # TODO: display full name of shell  (e.g. zsh  => Z Shell)
 
 echo "${OUTT}"
 format_info os       "$(../src/os.sh '$pretty_name')"
-format_info editor   "$EDITOR"
+format_info editor   "$(../src/editor.sh)"
 format_info packages "$(../src/pkgs.sh '$pkgs_tiny_total')"
 format_info shell    "${SHELL##*/}"
 format_info uptime   "$(../src/upt.sh)"

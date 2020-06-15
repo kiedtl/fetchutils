@@ -25,7 +25,7 @@ case "$name" in
 
     *nvim*)
         full_name='neovim'
-        pretty_name='NeoVim'
+        pretty_name='Neovim'
         version="$(nvim --version | \
             head -n1 | awk '{ print $NF }')"
     ;;
