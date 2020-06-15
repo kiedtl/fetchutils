@@ -1,0 +1,64 @@
+#!/bin/sh
+#
+# http://github.com/mitchweaver
+#
+# mitchweaver's fetch script, ported to
+# fetchutils ;)
+#
+
+# TODO: use fetchutils to get model
+model() {
+    if [ -f /sys/firmware/devicetree/base/model ] ; then
+        read -r m < /sys/firmware/devicetree/base/model
+    elif [ -f /sys/devices/virtual/dmi/id/product_name ] ; then
+        read -r m </sys/devices/virtual/dmi/id/product_name
+    fi
+    printf '%s\n' "$m"
+}
+
+pr_line() {
+    buf=$1
+    # SC: "i is unused"
+    # shellcheck disable=2034
+    for i in r i c i n g $(seq "$3") ; do
+        buf="$buf─"
+    done
+    printf '%s\n' "$buf$2"
+}
+
+pr_host() {
+    read -r h </etc/hostname
+    host="$USER@$h"
+    printf '│   %s' "$host"
+
+    # fix this mess later, for now it works
+    #
+    # SC: "i is unused"
+    # shellcheck disable=2034
+    for i in _ _ $(seq $(($1 - ${#host}))) ; do
+        printf ' '
+    done
+
+    printf '%s\n' '│'
+}
+
+# get longest line
+length=$(../src/os.sh '$pretty_name')
+l2=$(model)
+[ ${#length} -lt ${#l2} ] && length=$l2
+
+# print top borders
+pr_line ┌ ┐ ${#length}
+pr_host     ${#length}
+pr_line ├ ┤ ${#length}
+
+column -t -s ^ <<EOF
+│ ^$(model)^│
+│ ^$(../src/os.sh '$pretty_name')^│
+│ ^$(../src/temp.sh)^│
+│ ^$(../src/mem.sh '${gb_used}G / ${gb_total}G')^│
+│  ^$(../src/disk.sh)^│
+EOF
+
+# print bottom borders
+pr_line └ ┘ ${#length}
