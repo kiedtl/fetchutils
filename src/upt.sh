@@ -21,7 +21,7 @@ case $(uname -s) in
     ;;
 
     *)
-        echo unsupported os: $(uname -s)
+        echo "unsupported os: $(uname -s)" >&2
         exit 1
     ;;
 esac

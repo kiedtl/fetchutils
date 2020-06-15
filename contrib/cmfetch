@@ -44,14 +44,11 @@ R="\033[0m"
 	"plain")
 		F="$R";;
 	"border")
-		A='' B='';;
+        A=() B=();;
 	"mono")
-		A='' B='' F="$R";;
+        A=() B=() F="$R";;
 	"mono2")
-        A=''
-        B=''
-        F=''
-        R=''
+        unset A B F R
 esac
 
 for ((i = 0; i < ${#LINE[@]}; i++)); do

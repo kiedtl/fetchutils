@@ -24,7 +24,7 @@ get_os_other() {
     # cache output of uname
     uname=$(uname -s)
 
-    id=$(echo $uname | tr A-Z a-z)
+    id=$(echo "$uname" | tr '[:upper:]' '[:lower:]')
     pretty_name=$uname
     name=$uname
 }

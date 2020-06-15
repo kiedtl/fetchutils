@@ -22,7 +22,7 @@ pkg_managers=
 fmt="${1:-\$total}"
 
 getpkgs() {
-    total="$(($total+$2))"
+    total="$((total+$2))"
     pkgs_total="$pkgs_total $2 ($1)"
     pkg_managers="$pkg_managers $1"
 }
@@ -49,11 +49,15 @@ command -v xbps-query 2>/dev/null >&2 && \
 
 # generate $pkgs_tiny_total
 pkgs_tiny_total="$total ("
+
+# shellcheck disable=2086
 set -- $pkg_managers
+
 while [ $# -gt 0 ]; do
     pkgs_tiny_total="${pkgs_tiny_total}$1, "
     shift
 done
+
 pkgs_tiny_total="${pkgs_tiny_total%,\ }"
 pkgs_tiny_total="${pkgs_tiny_total})"
 

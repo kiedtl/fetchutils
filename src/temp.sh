@@ -20,14 +20,14 @@ case $(uname -s) in
         then
             read -r c < $path
         else
-            echo could not get temperature
+            echo "could not get temperature" >&2
             exit 1
         fi
 
         c="${c%???}"
     ;;
     *)
-        echo unsupported os: $(uname -s)
+        echo "unsupported os: $(uname -s)" >&2
         exit 1
     ;;
 esac
