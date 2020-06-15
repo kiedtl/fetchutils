@@ -47,6 +47,8 @@ to _kiedtl@tilde.team_.
 
 # SEE ALSO
 
+*fetchutils*(1)
+
 The full documentation for *res* is not maintained as a Texinfo manual.
 If the *info* and *res* programs are properly installed on your system,
 the command

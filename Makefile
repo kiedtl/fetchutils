@@ -5,7 +5,8 @@ DESTDIR =
 PREFIX  = /usr/local
 
 CMD = @
-SRC = disk.sh mem.sh os.sh pkgs.sh res.sh \
+SRC = disk.sh editor.sh \
+      mem.sh os.sh pkgs.sh res.sh \
       temp.sh upt.sh wm.sh
 SCD = man/fetchutils.1.scd \
       $(patsubst %.sh,man/%.1.scd,$(SRC))

@@ -63,6 +63,8 @@ scripts.
 :< description
 |  disk
 :  Get disk usage info.
+|  editor
+:  Get editor and find it's pretty name.
 |  mem
 :  Get memory usage info.
 |  os
@@ -93,8 +95,8 @@ Any attempts at improving this lousy manpage would be greatly appreciated.
 
 # SEE ALSO
 
-*disk*(1), *mem*(1), *os*(1), *pkgs*(1), *res*(1), *temp*(1), *upt*(1),
-*wm*(1)
+*disk*(1), *editor*(1), *mem*(1), *os*(1), *pkgs*(1), *res*(1), *temp*(1),
+*upt*(1), *wm*(1)
 
 The full documentation for *fetchutils* is not maintained as a Texinfo
 manual.

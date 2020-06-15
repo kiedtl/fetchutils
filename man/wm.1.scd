@@ -30,6 +30,8 @@ to _kiedtl@tilde.team_.
 
 # SEE ALSO
 
+*fetchutils*(1)
+
 The full documentation for *wm* is not maintained as a Texinfo manual.
 If the *info* and *wm* programs are properly installed on your system,
 the command
