@@ -10,8 +10,8 @@
 - (0.2.0) host (machine type)
 - (0.2.0) terminal (xterm, urxvt, etc)
 - (0.2.0) kernel (to get output of `uname -r` and split after dash
-- (0.1.0) shell ('/bin/bash' 'bash' 'Bourne Again Shell' 'v1.1.1)
-- (0.1.0) editor ('nvim' => 'NeoVim')
+- (0.2.0) shell ('/bin/bash' 'bash' 'Bourne Again Shell' 'v1.1.1)
++ (0.1.0) editor ('nvim' => 'NeoVim')
 + (0.1.0) disk
 + (0.1.0) tests to lint with shellcheck
 
