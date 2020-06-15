@@ -19,8 +19,6 @@ purposes:
 ## non-goals
 
 - duplicating existing functionality, `uname`, `hostname`, `$SHELL`, etc.
-  Instead, these tools simply extract the needed information from these
-  tools and format them as desired.
 - replacing Neofetch, Screenfetch, ufetch, etc.
 - supporting every Linux distro under the sun.
 - supporting DragonflyBSD or NetBSD (not right now, anyway. sorry).
@@ -30,9 +28,13 @@ purposes:
 
 ## installation
 
-Copy the scripts from `src/` into your directory of choice (e.g.
-`/usr/local/bin`). In the future, a `Makefile` will be provided to automate
-this.
+Execute:
+
+```
+$ make
+$ make chk
+# make PREFIX=<prefix> install
+```
 
 ## usage
 
@@ -56,6 +58,8 @@ $ mem '${gb_used}GB used out of ${gb_total}GB'
 
 Each tool has a man page (in `man/`) giving details such as the available
 specifiers and some nice examples.
+
+See the man page (`fetchutils(1)`) for more information on format strings.
 
 ## building a fetch script
 
@@ -93,20 +97,20 @@ _/\ __)/_)  memory: 2209M / 4053M
 As you can see, it just wraps the output of the various `fetchutils`
 utilities, and displays it with some ASCII art.
 
+Take a look at the various script in `contrib/` if you want to see
+more examples of how fetchutils can be used to create a fetch script.
+
 ## why?
 
-"Normal" system info scripts (such as Screenfetch) have many issues:
+"Normal" fetch scripts (such as ufetch or Neofetch) are good enough for
+most people.
 
-- They are more or less unreadable due to the huge size of the script.
-  (this doesn't necessarily apply to the smaller ones, like `ufetch`)
-- They are not fully customizable.
-- They do not output information in plain text.
+However, I've noticed a significant amount of people just end up writing
+their own fetch script, mostly because they wanted to try a new layout or
+look that other fetch tools don't support (e.g. the `contrib/nice` script).
 
-The last one is actually a feature for some, as many do not have the skills
-or time to build their own fetch script as described in the previous
-section. However, for those that do, these fetch tools can be immensely
-useful, as they are ridiculously customizable compared to other prebuilt
-fetch tools, thanks to their format strings.
+Instead of giving you a full-blown fetch tool, fetchutils offers you the
+tools needed to write your own.
 
 ## contributing
 
