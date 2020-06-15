@@ -16,9 +16,8 @@ LINE[0]=$(../src/upt.sh)
 
 LINE[1]=$(../src/mem.sh '${gb_used}G / ${gb_total}G')
 
-# TODO: use fetchutils for getting disk info
-LINE[2]=$(df -h | awk '/\/$/ {print $3 " / " $2}')
-LINE[3]=$(df -h | awk '/\/home$/ {print $3 " / " $2}')
+LINE[2]=$(../src/disk.sh '${gb_used}G / ${gb_total}G' '/$')
+LINE[3]=$(../src/disk.sh '${gb_used}G / ${gb_total}G' '/home.?$')
 
 HOST="$(hostname)"
 HOSTLEN=${#HOST}
