@@ -9,6 +9,7 @@
 - (0.2.0) terminal (xterm, urxvt, etc)
 - (0.2.0) cpu (clock, make, etc)
 - (0.2.0) gpu (clock, make, etc)
+- (0.1.0) disk
 
 ## to fix
 - (0.2.0) res: ${dpi} format
