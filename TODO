@@ -5,19 +5,20 @@
 - `+`: done
 
 ## to write
+- (0.3.0) cpu (clock, make, etc)
+- (0.3.0) gpu (clock, make, etc)
 - (0.2.0) host (machine type)
 - (0.2.0) terminal (xterm, urxvt, etc)
-- (0.2.0) cpu (clock, make, etc)
-- (0.2.0) gpu (clock, make, etc)
-- (0.1.0) disk
-- (0.1.0) kernel (to get output of `uname -r` and split after dash
-- (0.1.0) tests to lint with shellcheck
+- (0.2.0) shell ('/bin/bash' 'bash' 'Bourne Again Shell' 'v1.1.1)
+- (0.2.0) kernel (to get output of `uname -r` and split after dash
++ (0.1.0) disk
++ (0.1.0) tests to lint with shellcheck
 
 ## to fix
-- (0.2.0) res: ${dpi} format
-- (0.2.0) precision specifiers for all utilities
 - (0.3.0) res: support Wayland
 - (0.3.0) wm: support Wayland
+- (0.2.0) res: ${dpi} format
+- (0.2.0) precision specifiers for all utilities
 - (0.2.0) wm: support wm's that don't set _NET_WM_NAME
 - (0.2.0) temp: support °F, °K
 - (0.2.0) upt: addfmt specifiers for year, month, week
@@ -29,6 +30,7 @@
 + (0.1.0) man page for each script, with examples
 + (0.1.0) readme.md
 + (0.1.0) Makefile
+- (0.1.0) write fetchutils(1)
 
 ## pkg manager support
 + (0.1.0) FreeBSD support
