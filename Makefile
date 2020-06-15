@@ -1,5 +1,5 @@
 .POSIX:
-.PHONY: all clean
+.PHONY: all clean install uninstall chk
 
 DESTDIR =
 PREFIX  = /usr/local
@@ -37,3 +37,6 @@ uninstall:
 				$(DESTDIR)$(PREFIX)$$dest; \
 			rm -f $(DESTDIR)$(PREFIX)$$dest; \
 		done
+
+chk:
+	$(CMD)tests/main.sh
