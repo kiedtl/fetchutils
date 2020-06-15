@@ -8,7 +8,7 @@
 
 [ -z "$1" ] && set -- '${height}x$width'
 [ -z "$DISPLAY" ] && {
-    echo could not find display
+    echo "could not find display" >&2
     exit 1
 }
 
