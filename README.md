@@ -28,11 +28,20 @@ purposes:
 
 ## installation
 
+Ensure that:
+- GNU Make is installed.
+	- BSD Make isn't supported. (This is planned.)
+- You are using a supported OS.
+	- FreeBSD support is only partial.
+	- OpenBSD support is planned.
+	- Linux should work out of the box.
+- [`scdoc`](https://git.sr.ht/~sircmpwn/scdoc) is installed.
+	- Optional, but required to generate manpages.
+
 Execute:
 
 ```
 $ make
-$ make chk
 # make PREFIX=<prefix> install
 ```
 
