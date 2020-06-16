@@ -8,8 +8,8 @@
 
 case $(uname -s) in
     Linux*)
-        s=$(cat /proc/uptime)
-        s=${s%%.*}
+        secs=$(cat /proc/uptime)
+        secs=${secs%%.*}
     ;;
 
     *BSD*)
@@ -17,7 +17,7 @@ case $(uname -s) in
             sed 's/{ sec = //g; s/,.*//g')
         now=$(date +%s)
 
-        s=$((now - boottime))
+        secs=$((now - boottime))
     ;;
 
     *)
@@ -26,13 +26,13 @@ case $(uname -s) in
     ;;
 esac
 
-d=$((s/86400))
-h=$((s/3600%24))
-m=$((s/60%60))
+days=$((secs/86400))
+hours=$((secs/3600%24))
+mins=$((secs/60%60))
 
-[ $d = 0 ] || d="${d}${UPT_DAY_SUFFIX:-d}"
-[ $h = 0 ] || h="${h}${UPT_HOUR_SUFFIX:-h}"
-[ $m = 0 ] || m="${m}${UPT_MIN_SUFFIX:-m}"
-[ $s = 0 ] || s="${s}${UPT_SEC_SUFFIX:-s}"
+[ $days  = 0 ] || d="${days}${UPT_DAY_SUFFIX:-d}"
+[ $hours = 0 ] || h="${hours}${UPT_HOUR_SUFFIX:-h}"
+[ $mins  = 0 ] || m="${mins}${UPT_MIN_SUFFIX:-m}"
+[ $secs  = 0 ] || s="${secs}${UPT_SEC_SUFFIX:-s}"
 
 eval echo "$1"
