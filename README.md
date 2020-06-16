@@ -26,6 +26,16 @@ purposes:
 	- such a script would require so much flexibility it's just better
 	that users write their own.
 
+## status
+
+Alpha. Expect tools to be incomplete, buggy, and to have many missing
+features. Many tools haven't even been written yet.
+
+Many distros/os's aren't supported yet, and documentation is
+sub-optimal.
+
+(see the [TODO](TODO) file to see what's planned.)
+
 ## installation
 
 Ensure that:
