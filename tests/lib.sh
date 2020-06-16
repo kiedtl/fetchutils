@@ -23,6 +23,15 @@ test_command() {
     fi
 }
 
+# utility function to run shellcheck
+# and test for trailing whitespace
+test_shchk() {
+    test_command "shellcheck $SHCHK_FLAGS $1" \
+        "passed shellcheck: '$1'"
+    test_command "[ \$(grep '\s$' $1 | wc -l) -eq 0 ]" \
+        "no trailing whitespace: '$1'"
+}
+
 end() {
     printf '\n'
     printf '== completed %s tests. %s passed, %s failed.\n' \
