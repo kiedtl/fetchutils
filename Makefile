@@ -1,5 +1,9 @@
-.POSIX:
-.PHONY: all clean install uninstall chk
+#
+# fetchutils: some fetch utilities
+#
+# (c) Kiëd Llaentenn and contributors
+# See the COPYING file for copyright information.
+#
 
 DESTDIR =
 PREFIX  = /usr/local
@@ -21,7 +25,7 @@ clean:
 	@printf "    %-8s man/*.1\n" "CLEAN"
 	$(CMD)rm -f man/*.1
 
-install:
+install: $(MAN)
 	$(CMD)cat etc/manifest.txt | \
 		while read -r src dest mode; \
 		do \
@@ -42,3 +46,6 @@ uninstall:
 
 chk:
 	$(CMD)tests/main.sh
+
+.PHONY: all clean install uninstall chk
+
