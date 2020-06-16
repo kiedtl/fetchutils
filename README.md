@@ -48,6 +48,13 @@ Ensure that:
 - [`scdoc`](https://git.sr.ht/~sircmpwn/scdoc) is installed.
 	- Optional, but required to generate manpages.
 
+Download:
+- either the latest source tarball from the GitHub releases, or
+- the git repository, on the main branch.
+
+NOTE: you **will need `dc` installed** if you choose the
+latter option.
+
 Execute:
 
 ```
