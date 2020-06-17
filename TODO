@@ -9,7 +9,6 @@
 - (0.3.0) gpu (clock, make, etc)
 - (0.2.0) host (machine type)
 - (0.2.0) terminal (xterm, urxvt, etc)
-- (0.2.0) kernel (to get output of `uname -r` and split after dash
 - (0.2.0) shell ('/bin/bash' 'bash' 'Bourne Again Shell' 'v1.1.1)
 + (0.1.0) editor ('nvim' => 'NeoVim')
 + (0.1.0) disk
@@ -53,4 +52,5 @@
 
 ## misc
 + (0.1.0) one final round of testing before release of v0.1.0
-- (0.1.0) adverti^H^H^H^H^H^H^Hshare on r/unixporn
++ (0.1.0) adverti^H^H^H^H^H^H^Hshare on r/unixporn
+- (0.2.0) share on r/commandline and r/bash
