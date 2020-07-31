@@ -47,8 +47,7 @@ case "$name" in
 
     *)
         full_name=$name pretty_name=$name
-        version="$($name --version | \
-            head -n1 | awk '{ print $NF }')"
+        version="?"
 esac
 
 eval echo "$1"
