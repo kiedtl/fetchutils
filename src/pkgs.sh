@@ -27,6 +27,9 @@ getpkgs() {
     pkg_managers="$pkg_managers $1"
 }
 
+command -v apk 2>/dev/null >&2 && \
+    getpkgs apk "$(apk list -I | wc -l)"
+
 command -v dpkg 2>/dev/null >&2 && \
     getpkgs apt "$(dpkg --get-selections | \
         grep -cv deinstall)"
