@@ -6,7 +6,7 @@
 #
 
 DESTDIR =
-PREFIX  = /usr/local
+PREFIX  = /usr/local/
 
 CMD = @
 SRC = disk.sh editor.sh \
