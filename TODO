@@ -7,6 +7,7 @@
 ## to write
 - (0.3.0) cpu (clock, make, etc)
 - (0.3.0) gpu (clock, make, etc)
+- (0.2.0) network (interface, up/down speed)
 - (0.2.0) host (machine type)
 - (0.2.0) terminal (xterm, urxvt, etc)
 - (0.2.0) shell ('/bin/bash' 'bash' 'Bourne Again Shell' 'v1.1.1)
